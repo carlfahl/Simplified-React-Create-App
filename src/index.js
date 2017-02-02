@@ -1,22 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Jumbotron} from 'react-bootstrap';
+import HelloWorld from './HelloWorld2';
 
-var HelloWorld = React.createClass({
-  render: function() {
-    return (
-      <Jumbotron>
-        <h1>Hello World!!!</h1>
-        <h2>It is good to be in the World</h2>
-        <p>I hope it is for you as well!!</p>
-      </Jumbotron>
-    );
-  }
-});
 
 var TableListing = React.createClass({
-  setInitialState: function () {
+  getInitialState: function () {
     return {
       todos: [{name: 'Write todo app in React', date: '2/2/17', status: 'ToDo'},
               {name: 'Make Bears CRUD Api', date:'2/2/17', status:'Done'},
@@ -24,9 +13,9 @@ var TableListing = React.createClass({
     };
   },
   render: function () {
-    var trows = this.state.todos.reduce(function (preVal, item) {
+    var trows = this.state.todos.map(function (item) {
       return ('<tr><td>' + item.name + '</td><td>' + item.date + '</td><td>' + item.status + '</td><td> Complete </td></tr>');
-    }, '');
+    });
     return (
       <div>
         <table>
@@ -57,6 +46,6 @@ var MyApp = React.createClass({
 });
 
 ReactDOM.render(
-  <MyApp />,
+  <HelloWorld />,
   document.getElementById('root')
 );
