@@ -1,4 +1,5 @@
 import React from 'react';
+import numbersData from './data/'
 
 var NumberMapsAndFilters = React.createClass({
   render: function() {

@@ -1,5 +1,24 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Table, Button} from 'react-bootstrap';
+
+var CompleteBtn = function (props) {
+    return (<Button bsStyle="primary"
+              onClick={props.handleClick}>Complete
+            </Button>)
+}
+
+var TableCell = function (props) {
+    return (<td>{props.value}</td>);
+}
+
+var TableRow = function (props) {
+    return (<tr>
+              <TableCell value={props.name} />
+              <TableCell value={props.date} />
+              <TableCell value={props.status} />
+              <TableCell value={<CompleteBtn />} />
+            </tr>);
+}
 
 var TableListing = React.createClass({
   getInitialState: function () {
@@ -11,10 +30,11 @@ var TableListing = React.createClass({
   },
   render: function () {
     var trows = this.state.todos.map(function (item) {
-      return (<tr><td>{item.name}</td><td>{item.date}</td><td>{item.status}</td><td>Complete</td></tr>);
+      return (<TableRow name={item.name} date={item.date} status={item.status} />);
     });
     return (
       <div>
+        <h1>{this.props.title}</h1>
         <Table hover>
           <thead>
             <th><strong>Name</strong></th>
